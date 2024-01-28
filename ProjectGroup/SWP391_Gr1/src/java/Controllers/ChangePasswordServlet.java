@@ -5,18 +5,23 @@
 
 package Controllers;
 
+import static Common.Encoding.encodePassword;
+import DataAccess.UserDAO;
+import Models.Account;
+import Models.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
- * @author tuant
+ * @author AD
  */
-public class NewServlet1 extends HttpServlet {
+public class ChangePasswordServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -33,10 +38,10 @@ public class NewServlet1 extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet NewServlet1</title>");  
+            out.println("<title>Servlet ChangePasswordServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet NewServlet1 at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet ChangePasswordServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -53,7 +58,7 @@ public class NewServlet1 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("changepassword.jsp").forward(request, response);  
     } 
 
     /** 
@@ -66,7 +71,36 @@ public class NewServlet1 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String oldPassword = request.getParameter("oldpassword");
+        String newPassword = request.getParameter("newpassword");
+        String cfPassword = request.getParameter("confirmpassword");
+        String message = "";
+        
+        //get id from session
+        HttpSession session = request.getSession();
+        Account acc = (Account) session.getAttribute("account");
+        
+        UserDAO u = new UserDAO();
+        User user = u.getUserById(acc.getId());
+        
+        if(!user.getPassword().equals(oldPassword)){
+            message = "current password is not correct";    
+        }
+        
+        if(newPassword.equals(oldPassword)|| !newPassword.equals(cfPassword) || newPassword.equals("") || cfPassword.equals("")){
+            message = "new password is not valid";
+        }
+        
+        if(message.equals("")){
+            String passEndcode = encodePassword(newPassword);
+            u.changePassword(user.getMail(), passEndcode);
+            request.setAttribute("message", "change password successfully");
+            request.getRequestDispatcher("changepassword.jsp").forward(request, response);  
+        }else{
+            request.setAttribute("message", message);
+            request.getRequestDispatcher("changepassword.jsp").forward(request, response);  
+        }
     }
 
     /** 
