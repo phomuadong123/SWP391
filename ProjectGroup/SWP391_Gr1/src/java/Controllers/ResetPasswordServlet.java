@@ -6,6 +6,7 @@ package Controllers;
 
 import static Common.Encoding.encodePassword;
 import static Common.SendMail.sendMail;
+import DataAccess.AccountDAO;
 import DataAccess.UserDAO;
 import Models.User;
 import java.io.IOException;
@@ -76,6 +77,7 @@ public class ResetPasswordServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        AccountDAO ac = new AccountDAO();
         UserDAO u = new UserDAO();
 
         String email = request.getParameter("email");
@@ -86,7 +88,7 @@ public class ResetPasswordServlet extends HttpServlet {
             if (otp.equals(systemOTP)) {
                 String newPassword = generateRandomPassword(12);
                 String passEndcode = encodePassword(newPassword);
-                u.changePassword(email, passEndcode);
+                ac.changePassM(email, passEndcode);
                 sendMail(email,newPassword,"New Password Của Bạn:");
                 message = "changePassword success!";
                 request.setAttribute("email", email);

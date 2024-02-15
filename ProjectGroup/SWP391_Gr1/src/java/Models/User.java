@@ -4,6 +4,8 @@
  */
 package Models;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author AD
@@ -16,10 +18,21 @@ public class User {
     private String role;
     private String mail;
     private int cartId;
+    private ArrayList<Role> roles = new ArrayList<>();
 
     public int getId() {
         return id;
     }
+
+    public ArrayList<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(ArrayList<Role> roles) {
+        this.roles = roles;
+    }
+    
+    
 
     public String getFullName() {
         return fullName;

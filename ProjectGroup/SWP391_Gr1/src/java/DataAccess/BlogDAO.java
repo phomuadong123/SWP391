@@ -29,8 +29,7 @@ public class BlogDAO extends DBContext {
                     + "      ,[publishedDate]\n"
                     + "      ,[image]\n"
                     + "      ,[user_id]\n"
-                    + "      ,[author]\n"
-                    + "  FROM [JollyShoppingOnline].[dbo].[Blog]\n"
+                    + "  FROM [Blog]\n"
                     + "  order by publishedDate\n"
                     + "	offset ? row fetch next 3 rows only";
             stm = connection.prepareStatement(sql);
@@ -45,19 +44,15 @@ public class BlogDAO extends DBContext {
                 b.setPublishedDate(rs.getDate("publishedDate"));
                 b.setImage(rs.getString("image"));
                 b.setPublishedTime(rs.getTime("publishedDate"));
-                b.setAuthor(rs.getString("author"));
                 blog.add(b);
-
             }
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-
         return blog;
     }
     
     public Blog getBlogById(String id) {
-        
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
@@ -68,8 +63,7 @@ public class BlogDAO extends DBContext {
                     + "      ,[publishedDate]\n"
                     + "      ,[image]\n"
                     + "      ,[user_id]\n"
-                    + "      ,[author]\n"
-                    + "  FROM [JollyShoppingOnline].[dbo].[Blog]\n"
+                    + "  FROM [Blog]\n"
                     + "where id=?";
             stm = connection.prepareStatement(sql);
             stm.setString(1, id);
@@ -83,14 +77,11 @@ public class BlogDAO extends DBContext {
                 b.setPublishedDate(rs.getDate("publishedDate"));
                 b.setImage(rs.getString("image"));
                 b.setPublishedTime(rs.getTime("publishedDate"));
-                b.setAuthor(rs.getString("author"));
-                
                 return b;
             }
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-
         return null;
     }
     

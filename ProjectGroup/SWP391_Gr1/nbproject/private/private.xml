@@ -3,15 +3,41 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/AD/swp391_gr1/PG/SWP391_Gr1/src/java/DataAccess/DBContext.java</file>
-            <file>file:/C:/Users/AD/swp391_gr1/PG/SWP391_Gr1/src/java/DataAccess/CategoryDAO.java</file>
-            <file>file:/C:/Users/AD/swp391_gr1/PG/SWP391_Gr1/src/java/Controllers/HomeServlet.java</file>
-            <file>file:/C:/Users/AD/swp391_gr1/PG/SWP391_Gr1/src/java/Controllers/ChangePasswordServlet.java</file>
-            <file>file:/C:/Users/AD/swp391_gr1/PG/SWP391_Gr1/src/java/Models/Slider.java</file>
-            <file>file:/C:/Users/AD/swp391_gr1/PG/SWP391_Gr1/src/java/DataAccess/ProductDAO.java</file>
-            <file>file:/C:/Users/AD/swp391_gr1/PG/SWP391_Gr1/src/java/Models/User.java</file>
-            <file>file:/C:/Users/AD/swp391_gr1/PG/SWP391_Gr1/src/java/DataAccess/SliderDAO.java</file>
-            <file>file:/C:/Users/AD/swp391_gr1/PG/SWP391_Gr1/src/java/DataAccess/UserDAO.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/Controllers/LoginServlet.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/Models/User.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/Models/Comment.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/Controllers/BlogServlet.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/DataAccess/OrderDAO.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/Controllers/ProfileServlet.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/Controllers/BlogSingleServlet.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/Controllers/SignupServlet.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/web/common/header.jsp</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/DataAccess/CommentDAO.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/web/index.html</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/web/blog-single.jsp</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/DataAccess/BlogDAO.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/DataAccess/DBContext.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/DataAccess/AccountDAO.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/DataAccess/ProductDAO.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/DataAccess/SliderDAO.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/web/home.jsp</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/Models/Feature.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/Controllers/OrderHistoryServlet.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/Common/Encoding.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/web/blogList.jsp</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/Common/SendMail.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/Controllers/Authentication/BasedAuthorizationController.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/DataAccess/MyDAO.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/DataAccess/CategoryDAO.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/Models/Account.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/Controllers/CommentServlet.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/Controllers/Authentication/BasedRequiredAuthenticationController.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/Controllers/ResetPasswordServlet.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/DataAccess/UserDAO.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/Controllers/NewServlet.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/Models/Role.java</file>
+            <file>file:/C:/Users/tuant/OneDrive/Desktop/SWP_WORKSPACE/PG/SWP391_Gr1/src/java/Controllers/HomeServlet.java</file>
         </group>
     </open-files>
 </project-private>

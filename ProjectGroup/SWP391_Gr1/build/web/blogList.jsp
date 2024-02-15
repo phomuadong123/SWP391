@@ -34,6 +34,7 @@
     </head><!--/head-->
 
     <body>
+        
         <%@include file="common/header.jsp" %>
 
         <section>

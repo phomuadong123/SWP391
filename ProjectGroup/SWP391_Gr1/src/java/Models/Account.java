@@ -4,6 +4,8 @@
  */
 package Models;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Admin
@@ -11,10 +13,76 @@ package Models;
 public class Account {
 
     private int id;
-    private String fullname, password, phone, role, mail;
+    private String fullname, password, phone, role, mail, country, city, street, state, avatar;
     int cartId;
+     private ArrayList<Role> roles = new ArrayList<>();
 
     public Account() {
+    }
+
+    public Account(int id, String fullname, String password, String phone, String role, String mail, String country, String city, String street, String state, String avatar, int cartId) {
+        this.id = id;
+        this.fullname = fullname;
+        this.password = password;
+        this.phone = phone;
+        this.role = role;
+        this.mail = mail;
+        this.country = country;
+        this.city = city;
+        this.street = street;
+        this.state = state;
+        this.avatar = avatar;
+        this.cartId = cartId;
+    }
+
+    public ArrayList<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(ArrayList<Role> roles) {
+        this.roles = roles;
+    }
+    
+    
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public Account(int id, String fullname, String password, String phone, String role, String mail, int cartId) {

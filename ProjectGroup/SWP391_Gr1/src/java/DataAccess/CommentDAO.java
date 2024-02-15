@@ -82,7 +82,7 @@ public class CommentDAO extends DBContext {
                     + ",c.[date]\n"
                     + ",c.[parent_id],\n"
                     + "u.fullName\n"
-                    + "FROM [JollyShoppingOnline].[dbo].[Comment] c join [User] u\n"
+                    + "FROM [Comment] c join [User] u\n"
                     + "on u.id=c.[user_id]\n"
                     + "where c.parent_id is null and blog_id = ?\n"
                     + "order by c.date\n";
@@ -121,7 +121,7 @@ public class CommentDAO extends DBContext {
                     + ",c.[date]\n"
                     + ",c.[parent_id],\n"
                     + "u.fullName\n"
-                    + "FROM [JollyShoppingOnline].[dbo].[Comment] c join [User] u\n"
+                    + "FROM [Comment] c join [User] u\n"
                     + "on u.id=c.[user_id]\n"
                     + "where c.parent_id is null and blog_id = ?\n"
                     + "order by c.date\n"
@@ -166,6 +166,7 @@ public class CommentDAO extends DBContext {
     }
 
     public ArrayList<Comment> getSubComment(int cid) {
+        
         ArrayList<Comment> comment = new ArrayList<>();
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -176,7 +177,7 @@ public class CommentDAO extends DBContext {
                     + "      ,[blog_id]\n"
                     + "      ,[date]\n"
                     + "      ,[parent_id]\n"
-                    + "  FROM [JollyShoppingOnline].[dbo].[Comment]\n"
+                    + "  FROM [Comment]\n"
                     + "  where parent_id = ?";
             stm = connection.prepareStatement(sql);
             stm.setInt(1, cid);

@@ -20,11 +20,7 @@
         <link href="css/price-range.css" rel="stylesheet">
         <link href="css/animate.css" rel="stylesheet">
         <link href="css/main.css" rel="stylesheet">
-        <link href="css/responsive.css" rel="stylesheet">
-        <!--[if lt IE 9]>
-        <script src="js/html5shiv.js"></script>
-        <script src="js/respond.min.js"></script>
-        <![endif]-->       
+        <link href="css/responsive.css" rel="stylesheet">   
         <link rel="shortcut icon" href="images/ico/favicon.ico">
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
@@ -36,6 +32,66 @@
         <script src="js/price-range.js"></script>
         <script src="js/jquery.prettyPhoto.js"></script>
         <script src="js/main.js"></script>
+        <style>
+           
+            .box{
+                background-color: #fff;
+                padding: 10px;
+                margin:10px 0px 50px 0px ;
+                border-radius: 100px;
+                box-shadow: 0px 10px 30px -15px #000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .box ul{
+                display: flex;
+                margin: 0px 10px;
+            }
+            .box ul li{
+                list-style: none;
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                border-radius: 100px;
+                text-align: center;
+                margin-right: 30px;
+            }
+            .box ul li a{
+                font-size: 25px;
+                text-decoration: none;
+                color: #000;
+                display: block;
+                border-radius: 100px;
+                transition: 0.2s;
+            }
+            .box ul li .active_page{
+                background-color: #a05acb;
+                color: #fff;
+            }
+            .box ul li a:hover,
+            .box button a:hover{
+                background-color: #a05acb;
+                color: #fff;
+            }
+            /* ---------- Buttons ---------- */
+            .box button{
+                font-size: 20px;
+                font-weight: bold;
+                background-color: #f1f1f1;
+                border: none;
+                cursor: pointer;
+                border-radius: 100px;
+                overflow: hidden;
+            }
+            .box button a{
+                text-decoration: none;
+                padding: 10px 20px;
+                display: block;
+                color: #000;
+                transition: 0.2s;
+            }
+        </style>
     </head><!--/head-->
 
     <body>
@@ -165,35 +221,13 @@
                         <div class="features_items"><!--features_items-->
                             <h2 class="title text-center">Features Items</h2>
 
-                            <!-- Pagination -->
-                            <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-3" style="height: 100px">
-                                <ul class="pagination ">
-                                    <li class="page-item">
-                                        <a class="page-link  ${tagindex<=1 ? "isDisabled" : ""} " href="home?index=${tagindex-1}" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                        </a>
-                                    </li>
 
-                                    <c:forEach begin="1" end="${endpage}" var="i">
-                                        <li  class="page-item ${(tagindex==i)?"active":""}"><a class="page-link" href="home?index=${i}"><span aria-hidden="true">${i}</span></a></li>
-                                            </c:forEach>
-
-
-
-                                    <li class="page-item" >
-                                        <a  class="page-link ${tagindex==endpage?"isDisabled":""}" href="home?index=${tagindex+1}" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>  
-                            <!-- Pagination -->
                             <c:forEach items="${requestScope.product}" var="p">
                                 <div class="col-sm-4">
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
-                                                <img src="${p.images.url}" alt="" style=" height: 180px"/>
+                                                <img src="${p.images.url}" alt="" style=" height: 220px"/>
                                                 <h2>$${p.price}</h2>
                                                 <p>${p.productName}</p>
                                                 <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -218,7 +252,15 @@
 
 
                         </div><!--features_items-->
+                        <!-- Pagination -->
+                        
+                        <div class="box">
+                            <button type="button" class="prev"><a href="home?index=${tagindex-1}">Prev</a></button>
+                            <ul class="ul"></ul>
+                            <button type="button" class="next"><a href="home?index=${tagindex+1}">Next</a></button>
+                        </div>
 
+                        <!-- Pagination -->
                         <div class="category-tab"><!--category-tab-->
                             <div class="col-sm-12">
                                 <ul class="nav nav-tabs">
@@ -273,8 +315,69 @@
         </section>
 
         <%@include file="common/footer.jsp" %>
+        
+         <script>
+        let ul = document.querySelector(".ul");
+        let prev = document.querySelector(".prev");
+        let next = document.querySelector(".next");
+        let current_page = ${tagindex};
+        let total_page = ${endpage};
+        let active_page = "";
 
+        create_pages(current_page);
 
+        function create_pages(current_page) {
+            ul.innerHTML = "";
 
+            let before_page = current_page - 3;
+            let after_page = current_page + 3;
+
+            if (current_page == 3||current_page == 2) {
+                before_page = current_page - 1;
+            }
+            if (current_page == 1) {
+                before_page = current_page;
+            }
+
+            if (current_page == total_page - 1) {
+                after_page = current_page + 1;
+            }
+            if (current_page == total_page) {
+                after_page = current_page;
+            }
+
+            for (let i = before_page; i <= after_page; i++) {
+                if (current_page == i) {
+                    active_page = "active_page";
+                } else {
+                    active_page = "";
+
+                }
+                ul.innerHTML += `<li onclick="create_pages(` + i + `)"><a href="home?index=`+i+`" class="page_number ` + active_page + `">` + i + `</a></li>`;
+            }
+
+            // Next and Previous Button Functionality.
+            prev.onclick = function () {
+                current_page--;
+                create_pages(current_page);
+            }
+            if (current_page <= 1) {
+                prev.style.display = "none";
+            } else {
+                prev.style.display = "block";
+            }
+
+            next.onclick = function () {
+                current_page++;
+                create_pages(current_page);
+            }
+            if (current_page >= total_page) {
+                next.style.display = "none";
+            } else {
+                next.style.display = "block";
+            }
+
+        }
+    </script>
     </body>
 </html>

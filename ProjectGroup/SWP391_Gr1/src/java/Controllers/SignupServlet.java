@@ -102,6 +102,7 @@ public class SignupServlet extends HttpServlet {
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             } else {
                 String enpassword = encodePassword(password);
+                accountSignUp.setPassword(enpassword);
                 account = x.signUp(accountSignUp);
                 int idC = carDaO.createCart(account);
                 int idW = wishListDao.createWishList(account);

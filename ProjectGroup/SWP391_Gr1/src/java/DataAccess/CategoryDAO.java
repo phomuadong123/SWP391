@@ -23,8 +23,7 @@ public class CategoryDAO extends DBContext {
         try {
             String sql = "SELECT [id]\n"
                     + "      ,[name]\n"
-                    + "      ,[parent_id]\n"
-                    + "  FROM [JollyShoppingOnline].[dbo].[Category]\n"
+                    + "  FROM [Category]\n"
                     + "  where parent_id is null ";
             stm = connection.prepareStatement(sql);
 
@@ -75,6 +74,7 @@ public class CategoryDAO extends DBContext {
     }
 
     public ArrayList<Category> getSubcategory(int cid) {
+        
         ArrayList<Category> category = new ArrayList<>();
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -82,8 +82,7 @@ public class CategoryDAO extends DBContext {
             String sql = "SELECT [id]\n"
                     + "      ,[name]\n"
                     + "      ,[parent_id]\n"
-                    + "      ,[search_id]\n"
-                    + "  FROM [dbo].[Category]\n"
+                    + "  FROM [Category]\n"
                     + "  where parent_id = ?";
             stm = connection.prepareStatement(sql);
             stm.setInt(1, cid);

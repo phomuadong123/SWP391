@@ -82,10 +82,11 @@ public class ProductDAO extends DBContext {
     }
 
     public ArrayList<Product> pagingProduct(int index) {
+        
         ArrayList<Product> list = new ArrayList<>();
         String sql = "SELECT p.id, p.name,p.description,p.price,i.url,\n"
                 + "i.id as 'imageId'\n"
-                + "  FROM [JollyShoppingOnline].[dbo].[Product] p join Image i \n"
+                + "  FROM [Product] p join Image i \n"
                 + "  ON p.id=i.product_id\n"
                 + "order by p.id\n"
                 + "offset ? row fetch next 6 rows only";
