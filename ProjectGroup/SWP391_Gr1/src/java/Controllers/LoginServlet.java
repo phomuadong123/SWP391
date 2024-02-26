@@ -7,6 +7,8 @@ import java.io.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
+
+
 public class LoginServlet extends HttpServlet {
 
     @Override
@@ -56,5 +58,25 @@ public class LoginServlet extends HttpServlet {
         // Return true if they match, false otherwise
         return x != null; // && x.getRole().equals("user") ;
     }
+    
+//    public static boolean verifyEmail(String email) throws IOException {
+//        String apiKey = "YOUR_API_KEY"; // Replace with your actual API key
+//        String apiUrl = "https://api.emailverification.whoisxmlapi.com/api/v1?apiKey=" + apiKey + "&emailAddress=" + email;
+//        
+//        HttpClient httpClient = HttpClients.createDefault();
+//        HttpGet httpGet = new HttpGet(apiUrl);
+//        
+//        HttpResponse response = httpClient.execute(httpGet);
+//        String jsonResponse = EntityUtils.toString(response.getEntity());
+//        
+//        // Parse the JSON response and check if email exists
+//        // This depends on the response format provided by the API
+//        // Example:
+//        // JSONObject jsonObject = new JSONObject(jsonResponse);
+//        // boolean exists = jsonObject.getBoolean("smtpCheck");
+//        // return exists;
+//        
+//        return false; // Placeholder
+//    }
 //////
 }

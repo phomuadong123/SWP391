@@ -42,39 +42,10 @@ public class CategoryDAO extends DBContext {
         return category;
     }
 
-    public ArrayList<Category> getBrandNameAndNumber() {
-        ArrayList<Category> category = new ArrayList<>();
-        PreparedStatement stm = null;
-        ResultSet rs = null;
-        try {
-            String sql = "SELECT COUNT(x.id) as 'brandNumber', \n"
-                    + "c.name as 'brandName'\n"
-                    + "FROM (SELECT c.id,p.name,p.price,p.description\n"
-                    + "FROM Category c join Product p\n"
-                    + "on c.id=p.category_id\n"
-                    + "group by c.parent_id,p.id,c.id,c.name,p.category_id,\n"
-                    + "p.name,p.description,p.price,p.quantity,p.gender) x \n"
-                    + "join Category c \n"
-                    + "on x.id=c.id\n"
-                    + "group by x.id,c.id,c.name";
-            stm = connection.prepareStatement(sql);
-
-            rs = stm.executeQuery();
-            while (rs.next()) {
-                Category c = new Category();
-                c.setCategoryName(rs.getString("brandName"));
-                c.setBrandNumber(rs.getInt("brandNumber"));
-                category.add(c);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-
-        return category;
-    }
+   
 
     public ArrayList<Category> getSubcategory(int cid) {
-        
+
         ArrayList<Category> category = new ArrayList<>();
         PreparedStatement stm = null;
         ResultSet rs = null;

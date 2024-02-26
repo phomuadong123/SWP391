@@ -19,9 +19,28 @@ public class Product {
     private Category category;
     private String title;
     private Images images;
+    private Date date;
+    private int quantity;
 
     public Product() {
     }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+    
 
     public String getTitle() {
         return title;

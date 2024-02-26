@@ -32,9 +32,21 @@
         <servlet-name>ProfileServlet</servlet-name>
         <servlet-class>Controllers.ProfileServlet</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>OrderHistoryServlet</servlet-name>
         <servlet-class>Controllers.OrderHistoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductDetailServlet</servlet-name>
+        <servlet-class>Controllers.ProductDetailServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadReview</servlet-name>
+        <servlet-class>Controllers.LoadReview</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddReviewProduct</servlet-name>
+        <servlet-class>Controllers.AddReviewProduct</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -84,9 +96,21 @@
         <servlet-name>ProfileServlet</servlet-name>
         <url-pattern>/profile</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>OrderHistoryServlet</servlet-name>
         <url-pattern>/OrderHistoryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductDetailServlet</servlet-name>
+        <url-pattern>/product-detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadReview</servlet-name>
+        <url-pattern>/load</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddReviewProduct</servlet-name>
+        <url-pattern>/addreviewproduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

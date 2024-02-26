@@ -4,9 +4,11 @@
  */
 package Controllers;
 
+import DataAccess.BrandDAO;
 import DataAccess.CategoryDAO;
 import DataAccess.ProductDAO;
 import DataAccess.SliderDAO;
+import Models.Brand;
 import Models.Category;
 import Models.Product;
 import Models.Slider;
@@ -65,43 +67,169 @@ public class HomeServlet extends HttpServlet {
         CategoryDAO categoryDAO = new CategoryDAO();
         ProductDAO productDAO = new ProductDAO();
         SliderDAO sliderDAO = new SliderDAO();
+        BrandDAO brandDAO = new BrandDAO();
 
         ArrayList<Slider> sliders = sliderDAO.getAllSlider();
         ArrayList<Category> categorys = categoryDAO.getAllCategory();
-        
+
         for (Category category : categorys) {
             ArrayList<Category> test = categoryDAO.getSubcategory(category.getId());
             category.setSubCategory(test);
         }
-            
+
         ArrayList<Product> products = productDAO.getRecomendProduct();
-        ArrayList<Category> brand = categoryDAO.getBrandNameAndNumber();
+        ArrayList<Brand> brand = brandDAO.getBrandNameAndNumber();
 
-        //pagingnation
-        int count = productDAO.getTotalProduct();
-        int endPage = count / 6;
-        if (count % 6 != 0) {
-            endPage++;
+        String subCatrgoryId = request.getParameter("sub");
+        String bid = request.getParameter("bid");
+        String from = request.getParameter("from");
+        String to = request.getParameter("to");
+        String sortBy = request.getParameter("sortBy");
+        String searchProduct = request.getParameter("searchProduct");
+
+        if (subCatrgoryId == null && bid == null && (from == null || to == null) && searchProduct == null) {
+            //pagingnation
+            int count = productDAO.getTotalProduct();
+            int endPage = count / 6;
+            if (count % 6 != 0) {
+                endPage++;
+            }
+            request.setAttribute("endpage", endPage);
+            String indexPage = request.getParameter("index");
+            if (indexPage == null) {
+                indexPage = "1";
+            }
+            int index;
+            try {
+                index = Integer.parseInt(indexPage);
+                if (sortBy == null) {
+                    ArrayList<Product> list = productDAO.pagingProduct(index);
+                    request.setAttribute("product", list);
+                    request.setAttribute("tagindex", index);
+                    request.setAttribute("HomeActive", true);
+                } else if (sortBy.contains("date")) {
+                    ArrayList<Product> list = productDAO.pagingProductOrderByDate(index, " desc ");
+                    request.setAttribute("product", list);
+                    request.setAttribute("tagindex", index);
+                    request.setAttribute("sortBy", true);
+                    request.setAttribute("isActive", true);
+                } else if (sortBy.contains("maxPrice")) {
+                    ArrayList<Product> list = productDAO.pagingProductOrderByPrice(index, " desc ");
+                    request.setAttribute("product", list);
+                    request.setAttribute("tagindex", index);
+                    request.setAttribute("sortByMaxPrice", true);
+                    request.setAttribute("MaxActive", true);
+                } else if (sortBy.contains("minPrice")) {
+                    ArrayList<Product> list = productDAO.pagingProductOrderByPrice(index, " asc ");
+                    request.setAttribute("product", list);
+                    request.setAttribute("tagindex", index);
+                    request.setAttribute("sortByMinPrice", true);
+                    request.setAttribute("MinActive", true);
+                }
+
+            } catch (Exception e) {
+            }
+
+        } else if (subCatrgoryId != null) {
+            int count = productDAO.getTotalProductByCId(subCatrgoryId);
+            int endPage = count / 6;
+            if (count % 6 != 0) {
+                endPage++;
+            } else {
+                endPage = 1;
+                request.setAttribute("errUrl", "https://tuha.vn/storage/san-pham-khong-co-san-het-hang.jpg");
+            }
+            request.setAttribute("endpage", endPage);
+            String indexPage = request.getParameter("index");
+            if (indexPage == null) {
+                indexPage = "1";
+            }
+            int index;
+            try {
+                index = Integer.parseInt(indexPage);
+                ArrayList<Product> list = productDAO.getProductsByCateId(subCatrgoryId, index);
+                request.setAttribute("product", list);
+                request.setAttribute("tagindex", index);
+                request.setAttribute("sub", subCatrgoryId);
+
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        } else if (bid != null) {
+            System.out.println(bid);
+            int count = productDAO.getTotalProductByBId(bid);
+            int endPage = count / 6;
+            if (count % 6 != 0) {
+                endPage++;
+            } else {
+                endPage = 1;
+                request.setAttribute("errUrl", "https://tuha.vn/storage/san-pham-khong-co-san-het-hang.jpg");
+            }
+            request.setAttribute("endpage", endPage);
+            String indexPage = request.getParameter("index");
+            if (indexPage == null) {
+                indexPage = "1";
+            }
+            int index;
+            try {
+                index = Integer.parseInt(indexPage);
+                ArrayList<Product> list = productDAO.getProductsByBId(bid, index);
+                request.setAttribute("tagindex", index);
+                request.setAttribute("product", list);
+                request.setAttribute("bid", bid);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        } else if (from != null || to != null) {
+            int count = productDAO.getTotalProductByPrice(from, to);
+            int endPage = count / 6;
+            if (count % 6 != 0) {
+                endPage++;
+            } else {
+                endPage = 1;
+                request.setAttribute("errUrl", "https://tuha.vn/storage/san-pham-khong-co-san-het-hang.jpg");
+            }
+            request.setAttribute("endpage", endPage);
+            String indexPage = request.getParameter("index");
+            if (indexPage == null) {
+                indexPage = "1";
+            }
+            int index;
+            try {
+                index = Integer.parseInt(indexPage);
+                ArrayList<Product> list = productDAO.getProductsByPrice(from, to, index);
+                request.setAttribute("tagindex", index);
+                request.setAttribute("product", list);
+                request.setAttribute("from", from);
+                request.setAttribute("to", to);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        } else if (searchProduct != null) {
+            int count = productDAO.getTotalProductBySearch(searchProduct);
+            int endPage = count / 6;
+            if (count % 6 != 0) {
+                endPage++;
+            } else {
+                endPage = 1;
+                request.setAttribute("errUrl", "https://tuha.vn/storage/san-pham-khong-co-san-het-hang.jpg");
+            }
+            request.setAttribute("endpage", endPage);
+            String indexPage = request.getParameter("index");
+            if (indexPage == null) {
+                indexPage = "1";
+            }
+            int index;
+            try {
+                index = Integer.parseInt(indexPage);
+                ArrayList<Product> list = productDAO.SearchProduct(index, searchProduct);
+                request.setAttribute("tagindex", index);
+                request.setAttribute("product", list);
+                request.setAttribute("s", searchProduct);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
-        request.setAttribute("endpage", endPage);
-        String indexPage = request.getParameter("index");
-        if (indexPage == null) {
-            indexPage = "1";
-        }
-        int index;
-        try {
-
-            index = Integer.parseInt(indexPage);
-            ArrayList<Product> list = productDAO.pagingProduct(index);
-            request.setAttribute("tagindex", index);
-            request.setAttribute("product", list);
-
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        
-        
-
 
         request.setAttribute("products", products);
         request.setAttribute("slider", sliders);
@@ -120,8 +248,7 @@ public class HomeServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
+            throws ServletException, IOException {        
     }
 
     /**
